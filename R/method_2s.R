@@ -438,9 +438,9 @@ outliers_correction <- function(x, k.ma = 3, NA.replace){
   
   # outlier is an observation greater than 4 times interquartile range
   if(NA.replace == T){
-    outlier <- abs(x - median(x, na.rm = T)) > (4 * stats::IQR(x, na.rm = T)) & !missing
+    outlier <- abs(x - median(x, na.rm = T)) > (10 * stats::IQR(x, na.rm = T)) & !missing
   }else{
-    outlier <- abs(x - median(x, na.rm = T)) > (4 * stats::IQR(x, na.rm = T)) & !missing
+    outlier <- abs(x - median(x, na.rm = T)) > (10 * stats::IQR(x, na.rm = T)) & !missing
     outlier[is.na(outlier)] = FALSE
     }
   Z <- x
