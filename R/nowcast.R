@@ -204,7 +204,7 @@ nowcast <- function(formula, data, r = NULL, q = NULL, p = NULL, method = 'EM', 
     #   
     Par <- list(r = rep(r,n_blocks), # Number of common factors
                 p = p, # Number of lags in autoregressive of factor (same for all factors)
-                max_iter = 500, # max number of itereations for the EM loop
+                max_iter = 100, # max number of itereations for the EM loop
                 i_idio = c(rep(T,dim(x)[2]-nQ), rep(F,nQ)),
                 Rconstr = matrix(c(
                   c(2,3,2,1),
