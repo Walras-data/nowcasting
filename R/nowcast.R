@@ -271,7 +271,8 @@ nowcast <- function(formula, data, r = NULL, q = NULL, p = NULL, method = 'EM', 
         yprev <- yprev*Res$Wx[y_pos]+Res$Mx[y_pos]
         
         # quarterly values
-        monthly = yprev
+        yprev2 = yprev
+        yval2 = x[,y_pos]
         yprev <- month2qtr(yprev)
         
         # observed values
@@ -292,6 +293,7 @@ nowcast <- function(formula, data, r = NULL, q = NULL, p = NULL, method = 'EM', 
     
     # Observed and forecast y
     Y <- cbind(y,yprev,yprev)
+    y = cbind(yval2, yprev2)
     Y[is.na(Y[,1]),2] <- NA
     Y[!is.na(Y[,1]),3] <- NA
     colnames(Y) <- c('y','in','out')
@@ -304,7 +306,7 @@ nowcast <- function(formula, data, r = NULL, q = NULL, p = NULL, method = 'EM', 
                 factors = factors, 
                 xfcst = fore_x,
                 Res = Res,
-                monthly = monthly
+                monthly = y
     )
     
   }
