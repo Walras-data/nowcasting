@@ -271,6 +271,7 @@ nowcast <- function(formula, data, r = NULL, q = NULL, p = NULL, method = 'EM', 
         yprev <- yprev*Res$Wx[y_pos]+Res$Mx[y_pos]
         
         # quarterly values
+        monthly = yprev
         yprev <- month2qtr(yprev)
         
         # observed values
@@ -302,7 +303,8 @@ nowcast <- function(formula, data, r = NULL, q = NULL, p = NULL, method = 'EM', 
     res <- list(yfcst = Y, 
                 factors = factors, 
                 xfcst = fore_x,
-                Res = Res
+                Res = Res,
+                monthly = monthly
     )
     
   }
